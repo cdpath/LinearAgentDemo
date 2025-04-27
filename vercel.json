@@ -11,5 +11,19 @@
       "src": "/(.*)",
       "dest": "api/index.py"
     }
-  ]
+  ],
+  "env": {
+    "LINEAR_CLIENT_ID": {
+      "description": "Linear OAuth Client ID for authentication"
+    },
+    "LINEAR_CLIENT_SECRET": {
+      "description": "Linear OAuth Client Secret for authentication"
+    },
+    "LINEAR_WEBHOOK_SECRET": {
+      "description": "Linear Webhook Secret for verifying webhook signatures"
+    },
+    "BASE_URL": {
+      "description": "Base URL of your application (e.g., https://your-app.vercel.app)"
+    }
+  }
 } 

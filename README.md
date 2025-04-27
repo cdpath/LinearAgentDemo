@@ -15,7 +15,6 @@ A demo implementation of Linear's agent (app user) that can be mentioned, assign
    - Set Webhook URL: `https://<YOUR_DOMAIN>/webhooks/linear`
    - Enable "Inbox notifications" in webhook settings
    - Save Client ID, Client Secret and Webhook Signing Secret
-
 2. Deploy to Vercel:
 
    1. Fork this repository
@@ -26,10 +25,8 @@ A demo implementation of Linear's agent (app user) that can be mentioned, assign
       - `LINEAR_CLIENT_SECRET`: Your Linear OAuth client secret
       - `LINEAR_WEBHOOK_SECRET`: Your Linear webhook secret
       - `BASE_URL`: Your Vercel deployment URL (e.g., https://your-app.vercel.app)
-
-5. Visit `https://<YOUR_DOMAIN>/api/oauth/start` to install the agent to your Linear workspace
-
-After installation, you can @mention and assign issues to this agent in Linear.
+3. Visit `https://<YOUR_DOMAIN>/api/oauth/start` to install the agent to your Linear workspace
+4. Now you can @mention and assign issues to this agent in Linear.
 
 ## Environment Variables (`.env`)
 
