@@ -16,22 +16,16 @@ A demo implementation of Linear's agent (app user) that can be mentioned, assign
    - Enable "Inbox notifications" in webhook settings
    - Save Client ID, Client Secret and Webhook Signing Secret
 
-2. Generate HTTPS certificate:
-   ```bash
-   certbot certonly --standalone -d <YOUR_DOMAIN>
-   ```
+2. Deploy to Vercel:
 
-3. Configure environment:
-   ```bash
-   cp .env.example .env
-   # Fill in the credentials from step 1
-   ```
-
-4. Start service:
-
-   ```bash
-   docker-compose up -d
-   ```
+   1. Fork this repository
+   2. Create a new project on [Vercel](https://vercel.com)
+   3. Connect your forked repository
+   4. Set up the following environment variables in your Vercel project settings:
+      - `LINEAR_CLIENT_ID`: Your Linear OAuth client ID
+      - `LINEAR_CLIENT_SECRET`: Your Linear OAuth client secret
+      - `LINEAR_WEBHOOK_SECRET`: Your Linear webhook secret
+      - `BASE_URL`: Your Vercel deployment URL (e.g., https://your-app.vercel.app)
 
 5. Visit `https://<YOUR_DOMAIN>/api/oauth/start` to install the agent to your Linear workspace
 

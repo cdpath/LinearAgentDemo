@@ -25,13 +25,11 @@ CLIENT_SECRET = os.getenv("LINEAR_CLIENT_SECRET")
 WEBHOOK_SECRET = os.getenv("LINEAR_WEBHOOK_SECRET")
 BASE_URL = os.getenv("BASE_URL")
 
-TOKEN_STORE = "token.json"
 REQUIRED_ENV_VARS = ["LINEAR_CLIENT_ID", "LINEAR_CLIENT_SECRET", "LINEAR_WEBHOOK_SECRET", "BASE_URL"]
 
 missing_vars = [var for var in REQUIRED_ENV_VARS if not os.getenv(var)]
 if missing_vars:
     raise ValueError(f"Missing required environment variables: {', '.join(missing_vars)}")
-
 
 @app.get("/api/oauth/start")
 async def oauth_start() -> RedirectResponse:
@@ -66,11 +64,11 @@ async def oauth_callback(code: str) -> str:
             logger.error(f"OAuth token error: {response.status_code} - {response.text}")
             response.raise_for_status()
             
-        # Store the token
-        with open(TOKEN_STORE, "w") as f:
-            f.write(response.text)
+        # Note: In a production environment, you should store the token in a secure database
+        # For demo purposes, we'll just log it (you can implement proper storage later)
+        token_data = response.json()
+        logger.info("Successfully received access token")
             
-        logger.info("Successfully installed Linear agent")
         return "✅ Agent installed – you can assign it now."
 
 def verify_webhook_signature(body: bytes, signature: str) -> bool:
@@ -107,3 +105,8 @@ async def handle_webhook(request: Request) -> dict:
         logger.info(f"Received {action} notification for issue: {issue_title}")
     
     return {"ok": True}
+
+# Add a health check endpoint
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "Linear Agent is running"} 

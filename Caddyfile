@@ -1,7 +1,0 @@
-{$BASE_URL} {
-	# Use host's existing LE cert/key
-	tls /certs/fullchain.pem /certs/privkey.pem
-
-	# Forward everything to the FastAPI agent
-	reverse_proxy agent:4000
-}
